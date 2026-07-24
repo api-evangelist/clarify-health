@@ -1,8 +1,25 @@
 aid: clarify-health
 name: Clarify Health
-description: 'Clarify Health is a company surfaced as a portfolio company of softbank-vision-fund and
-  added to the API Evangelist network as a stub for enrichment. Sector: health-tech. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: 'Clarify Health Solutions is a healthcare analytics and outcomes company that helps health
+  systems, payers, and life sciences organizations understand cost, quality, and utilization across the
+  care journey. Its flagship platform, Clarify Meridian, unifies referral intelligence, physician activation,
+  consumer engagement, and outcomes attribution into a single analytics environment built on billions of
+  longitudinal patient records and claims data. Clarify Health is backed by SoftBank Vision Fund and, in
+  2026, acquired Loyal Health to expand its consumer engagement capabilities. The company operates a
+  SaaS analytics product rather than a public developer API; this profile tracks its identity and public
+  web surface within the API Evangelist network.'
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://clarifyhealth.com/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/clarify-health/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,13 +29,39 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Health Tech
+- Healthcare Analytics
+- Health Data
+- Outcomes
+- Referral Intelligence
+- Payers
+- Life Sciences
 apis: []
+common:
+- type: DomainSecurity
+  url: security/clarify-health-domain-security.yml
+- type: Website
+  url: https://clarifyhealth.com
+- type: TermsOfService
+  url: https://clarifyhealth.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://clarifyhealth.com/privacy-policy
+- type: AcceptableUsePolicy
+  url: https://clarifyhealth.com/acceptable-use-policy
+- type: Resources
+  url: https://clarifyhealth.com/resources
+- type: LinkedIn
+  url: https://www.linkedin.com/company/clarify-health-solutions/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
