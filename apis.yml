@@ -29,7 +29,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-15'
 tags:
 - Company
 - Health Tech
@@ -55,13 +55,68 @@ common:
   url: https://clarifyhealth.com/resources
 - type: LinkedIn
   url: https://www.linkedin.com/company/clarify-health-solutions/
+- type: Blog
+  url: https://clarifyhealth.com/resources
+- type: BlogRSS
+  url: https://clarifyhealth.com/resource-source?format=rss
+- type: GitHubOrganization
+  url: https://github.com/clarifyhealth
+- type: Contact
+  url: https://clarifyhealth.com/contact-clarify
+- type: Careers
+  url: https://clarifyhealth.com/careers
+- type: StatusPage
+  url: https://status.clarifyhealth.com
+- type: Compliance
+  url: https://clarifyhealth.com/qe-public-reports
+- type: WellKnown
+  url: well-known/clarify-health-well-known.yml
+- type: Authentication
+  url: authentication/clarify-health-authentication.yml
+- type: OAuthScopes
+  url: scopes/clarify-health-scopes.yml
+- type: Lifecycle
+  url: lifecycle/clarify-health-lifecycle.yml
+- type: MCPServer
+  url: mcp/clarify-health-mcp.yml
+- type: Packages
+  url: packages/clarify-health-packages.yml
+- type: Conformance
+  url: conformance/clarify-health-conformance.yml
+- type: LLMsTxt
+  url: llms/clarify-health-llms.txt
+- type: Plans
+  url: plans/clarify-health-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/clarify-health-rate-limits.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-15'
+  status: enriched
+  artifacts_added: 14
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Clarify Health's entire public surface is a 79-page Squarespace marketing site whose
+    sitemap contains no developer, API or documentation path and whose pages contain zero
+    occurrences of the word "API"; api., docs., developer., developers. and
+    portal.clarifyhealth.com are all NXDOMAIN, and the only machine-readable documents the
+    company serves anywhere are the OIDC discovery files on its Auth0 and Okta login hosts.
+  evidence:
+  - url: https://clarifyhealth.com/sitemap.xml
+    status: 200
+  - url: https://clarifyhealth.com/openapi.json
+    status: 404
+  - url: https://clarifyhealth.com/llms.txt
+    status: 404
+  - url: https://clarifyhealth.com/.well-known/agent-card.json
+    status: 404
+  - url: https://auth.clarifyhealth.com/.well-known/openid-configuration
+    status: 200
+  checked: '2026-08-15'
