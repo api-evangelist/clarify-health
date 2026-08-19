@@ -1,0 +1,33 @@
+generated: '2026-08-15'
+method: searched
+source: >-
+  https://clarifyhealth.com/sitemap.xml (200, 79 URLs) and every page in the site
+  navigation — /, /meridian, /who-we-help, /about, /resources, /contact-clarify — fetched
+  2026-08-15
+plan_count: 0
+currency: null
+plans: []
+note: >-
+  Clarify Health publishes no pricing page and no plan tiers of any kind. There is no
+  /pricing path in the sitemap and no pricing link in the site navigation or footer. The
+  only commercial call to action is "Request a Briefing" / "Contact Us"
+  (https://clarifyhealth.com/contact-clarify), an enterprise sales motion. The company
+  states on its own site that its "economics [are] tied 100% to measurable results", which
+  points at outcomes-based contracting negotiated per health system rather than a published
+  rate card. There is also no API to price.
+signals:
+  pricing_page: false
+  self_serve_signup: false
+  free_tier: false
+  trial: false
+  enterprise_contact_only: true
+  contact_url: https://clarifyhealth.com/contact-clarify
+x-evidence:
+  fetched: '2026-08-15'
+  urls:
+  - url: https://clarifyhealth.com/sitemap.xml
+    status: 200
+    finding: no /pricing, /plans or /packages path among 79 URLs
+  - url: https://clarifyhealth.com/contact-clarify
+    status: 200
+    finding: contact/briefing request form

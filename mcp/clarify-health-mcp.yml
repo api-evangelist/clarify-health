@@ -1,0 +1,116 @@
+generated: '2026-08-15'
+method: searched
+status: published
+source: https://github.com/clarifyhealth/cms-datagov-mcp-server
+name: CMS Data.gov MCP Server
+vendor: Clarify Health Solutions
+license: MIT
+repository: https://github.com/clarifyhealth/cms-datagov-mcp-server
+repo_created: '2025-11-12'
+repo_last_push: '2025-12-02'
+package_name: '@clarify/cms-datagov-mcp-server'
+package_version: 1.0.4
+mcp_sdk: '@modelcontextprotocol/sdk ^0.6.0'
+runtime: Node.js >= 18
+
+deployment:
+  mode: local-stdio
+  endpoint: null
+  install: npm install && npm run build && npm link   # then command "cms-datagov-mcp-server"
+  package: https://github.com/clarifyhealth/cms-datagov-mcp-server
+  auth: none
+  verified: searched
+
+READ_THIS_FIRST: >-
+  This is a real, first-party MCP server — package.json names the author as "Clarify Health
+  Solutions" and it lives in the company's own GitHub organization. But it does NOT expose
+  Clarify Health's platform. It wraps the PUBLIC CMS data.cms.gov Data API
+  (https://data.cms.gov/data-api/v1) so an agent can search and query Medicare/Medicaid
+  datasets. Clarify Health publishes no MCP server for the Clarify Atlas or Meridian
+  platform, and publishes no API for one to wrap. Do not read this artifact as an agent
+  surface onto Clarify's own data.
+
+distribution:
+  registry_published: false
+  npm: not published — the name "@clarify/cms-datagov-mcp-server" returns 404 on
+    registry.npmjs.org (checked 2026-08-15)
+  install_path: clone the repo, npm install, npm run build, npm link
+  note: >-
+    Source-only distribution. There is no `npx -y` one-liner, so an operator must clone and
+    build before any agent can reach these tools.
+
+upstream_api:
+  name: CMS data.cms.gov Data API
+  base_url: https://data.cms.gov/data-api/v1
+  catalog: https://data.cms.gov/data.json
+  owner: Centers for Medicare & Medicaid Services (U.S. federal government)
+  auth: none (public)
+
+tools:
+- name: cms_search_datasets
+  description: Search CMS datasets by keyword, theme, or title. Returns matching datasets
+    with IDs, titles, descriptions, and available formats.
+  input:
+    query: {type: string, required: false}
+    theme: {type: string, required: false}
+    limit: {type: number, required: false}
+- name: cms_get_dataset
+  description: Get detailed information about a specific CMS dataset.
+  input:
+    dataset_id: {type: string, required: true}
+- name: cms_query_dataset
+  description: Query dataset records with filters, column selection, sorting and pagination.
+  input:
+    dataset_id: {type: string, required: true}
+    filter: {type: string, required: false}
+    columns: {type: string, required: false}
+    sort: {type: string, required: false}
+    offset: {type: number, required: false}
+    size: {type: number, required: false}
+- name: cms_get_dataset_stats
+  description: Get row counts and column information for a dataset.
+  input:
+    dataset_id: {type: string, required: true}
+- name: cms_get_csv_link
+  description: Get the CSV download URL for a dataset, for large-scale analysis (e.g. loading
+    into Athena).
+  input:
+    dataset_id: {type: string, required: true}
+
+resources:
+- uri: cms://datasets
+  description: Browse all available CMS datasets.
+- uri: cms://dataset/{id}
+  description: Metadata for one CMS dataset.
+- uri: cms://csv/{id}
+  description: CSV download link for one CMS dataset.
+
+tool_source:
+  method: derived
+  from: src/index.ts ListToolsRequestSchema handler at
+    https://raw.githubusercontent.com/clarifyhealth/cms-datagov-mcp-server/main/src/index.ts
+  note: >-
+    Tool names, descriptions and input schemas were read out of the published source rather
+    than from a live tools/list call — the server is stdio-only, so there is no endpoint to
+    POST tools/list at.
+
+x-internal-mcp-signal:
+  host: argos-mcp.clarifyhealth.com
+  evidence: >-
+    A publicly logged TLS certificate for argos-mcp.clarifyhealth.com was issued
+    2026-06-26 and is valid until 2027-01-09 (Certificate Transparency, via
+    api.certspotter.com).
+  public_dns: false
+  probe: >-
+    dig against 8.8.8.8 and 1.1.1.1 both return NXDOMAIN for argos-mcp.clarifyhealth.com
+    (2026-08-15); https://argos-mcp.clarifyhealth.com/mcp does not connect (curl exit,
+    HTTP 000).
+  interpretation: >-
+    Clarify appears to run an internal MCP surface named "argos" behind its VPN. It is NOT
+    a public agent surface and no endpoint is claimed here. Recorded as a lead only.
+
+x-evidence:
+  fetched: '2026-08-15'
+  github_api: https://api.github.com/repos/clarifyhealth/cms-datagov-mcp-server
+  http_status: 200
+  npm_probe: https://registry.npmjs.org/@clarify%2Fcms-datagov-mcp-server -> 404

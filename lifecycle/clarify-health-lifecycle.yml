@@ -1,0 +1,67 @@
+generated: '2026-08-15'
+method: probed
+source: >-
+  https://status.clarifyhealth.com/api/v2/summary.json (200) and
+  https://status.clarifyhealth.com/api/v2/components.json (200), fetched 2026-08-15
+status_page:
+  present: true
+  url: https://status.clarifyhealth.com
+  platform: Atlassian Statuspage
+  page_id: zfj9sbbf61jm
+  machine_readable: true
+  api:
+    summary: https://status.clarifyhealth.com/api/v2/summary.json
+    status: https://status.clarifyhealth.com/api/v2/status.json
+    components: https://status.clarifyhealth.com/api/v2/components.json
+    incidents: https://status.clarifyhealth.com/api/v2/incidents.json
+    scheduled_maintenances: https://status.clarifyhealth.com/api/v2/scheduled-maintenances.json
+  feeds:
+    rss: https://status.clarifyhealth.com/history.rss
+    atom: https://status.clarifyhealth.com/history.atom
+  time_zone: America/Los_Angeles
+  observed_indicator: none
+  observed_description: All Systems Operational
+  incident_history_entries: 0
+  components:
+  - name: Atlas Platform
+    description: Clarify application and services
+    status: operational
+    created: '2017-03-15'
+  - name: Public Website
+    description: Public-facing Clarify website
+    status: operational
+  - name: Auth0 User Authentication
+    status: operational
+    note: Matches the live Auth0 issuer at auth.clarifyhealth.com.
+  - group: Products
+    members: [Clarify Care, Clarify Contracts, Clarify Networks, Clarify Populations, Clarify
+        Rates, Clarify Utilization, Clarify Markets, Clarify Referrals]
+    status: operational
+  - group: Infrastructure dependencies (surfaced on the status page)
+    members: [AWS athena-us-west-2, AWS ec2-us-west-2, AWS ecs-us-west-2, AWS elasticache-us-west-2,
+      AWS elb-us-west-2, AWS rds-us-west-2]
+    note: >-
+      Clarify surfaces its own AWS us-west-2 dependencies as public components, which
+      discloses the hosting region for the Atlas Platform.
+versioning:
+  policy_published: false
+  scheme: null
+  note: No API exists to version, and no versioning policy is published.
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  note: >-
+    No deprecation or sunset policy is published. RFC 8594 Sunset/Deprecation headers could
+    not be observed because there is no public API endpoint to observe them on.
+sla:
+  published: false
+  note: >-
+    No public SLA. The Terms of Use at https://clarifyhealth.com/terms-of-use govern the
+    subscription; availability commitments, if any, live in the customer agreement.
+changelog:
+  published: false
+  note: >-
+    No dated product or API changelog is published. The status page carries zero incident
+    history entries, so it is not usable as a change record either.
+deprecated_operations: []

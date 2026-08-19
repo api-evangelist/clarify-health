@@ -1,0 +1,129 @@
+generated: '2026-08-15'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, api.github.com/orgs/clarifyhealth (37 public repos),
+  probed 2026-08-15
+headline: >-
+  Clarify Health publishes NO client SDK for any Clarify API — because it publishes no API.
+  Every registry probe for a first-party client library returned 404. What the company does
+  publish is a set of internal-tooling and data-science libraries in its public GitHub
+  organization, distributed as SOURCE ONLY: not one of them is on npm, PyPI, Maven Central,
+  crates.io, RubyGems or NuGet. A consumer cannot `npm install` or `pip install` anything
+  Clarify Health has written.
+sdk_count: 0
+official_sdk_count: 0
+registry_published_count: 0
+registries_probed: [npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io]
+
+packages:
+- language: typescript
+  registry: github
+  name: '@clarify/cms-datagov-mcp-server'
+  url: https://github.com/clarifyhealth/cms-datagov-mcp-server
+  install: git clone && npm install && npm run build && npm link
+  official: true
+  is_sdk: false
+  version: 1.0.4
+  published: '2025-12-02'
+  published_source: repository last push (no registry release; version read from package.json)
+  license: MIT
+  note: >-
+    MCP server for the public CMS data.cms.gov Data API — NOT for a Clarify API. The npm
+    name in package.json is unclaimed: registry.npmjs.org/@clarify%2Fcms-datagov-mcp-server
+    returns 404, so the declared package name is aspirational and the only distribution is
+    the git repository.
+- language: javascript
+  registry: github
+  name: clarify-logger
+  url: https://github.com/clarifyhealth/clarify-logger
+  install: git clone (not published to npm)
+  official: true
+  is_sdk: false
+  version: 1.0.10
+  published: '2024-06-22'
+  published_source: repository last push (version read from package.json; npm 404)
+  note: Internal common logging module. Not a client library for any Clarify API.
+- language: javascript
+  registry: github
+  name: clarify-loopback-jwt
+  url: https://github.com/clarifyhealth/clarify-loopback-jwt
+  install: git clone (not published to npm)
+  official: true
+  is_sdk: false
+  version: 1.0.1
+  published: '2025-12-04'
+  published_source: repository last push (version read from package.json; npm 404)
+  license: MIT
+  note: Express middleware mapping JWTs to LoopBack users. Internal platform plumbing.
+- language: javascript
+  registry: github
+  name: clarify-amqp
+  url: https://github.com/clarifyhealth/clarify-amqp
+  install: git clone (not published to npm)
+  official: true
+  is_sdk: false
+  archived: true
+  version: 1.1.2
+  published: '2018-08-01'
+  published_source: repository last push (version read from package.json; npm 404)
+  note: >-
+    AMQP messaging wrapper. Repository is ARCHIVED on GitHub — eight years without a
+    change and formally frozen.
+- language: python
+  registry: github
+  name: spark_feature_selector
+  url: https://github.com/clarifyhealth/spark_feature_selector
+  install: git clone (not published to PyPI)
+  official: true
+  is_sdk: false
+  version: 0.0.1
+  published: '2024-10-15'
+  published_source: VERSION file in repo; pypi.org/pypi/spark_feature_selector/json -> 404
+  license: Apache-2.0
+  note: Spark feature-selection library from the data-science team. 13 stars.
+- language: scala
+  registry: github
+  name: spark_model_explainer
+  url: https://github.com/clarifyhealth/spark_model_explainer
+  install: git clone (not published to Maven Central)
+  official: true
+  is_sdk: false
+  version: null
+  published: '2020-07-19'
+  published_source: null
+  license: Apache-2.0
+  note: >-
+    No published artifact and no version file found in the repo root; Maven Central has no
+    coordinate for it. version recorded as null — checked, nothing to record.
+
+unverified_ownership:
+- language: python
+  registry: pypi
+  name: transparency
+  url: https://pypi.org/project/transparency/
+  version: 0.0.9
+  published_source: pypi.org/pypi/transparency/json (HTTP 200)
+  official: false
+  reason_excluded: >-
+    A repository of the same name exists at github.com/clarifyhealth/transparency
+    (Apache-2.0, VERSION 0.0.8), but the PyPI package declares home_page
+    https://github.com/imanbio/transparency and authors "Iman Haji, Alvin Henrick" — a
+    DIFFERENT GitHub org. The ownership check in this pipeline fails on that, so it is not
+    credited to Clarify Health as a first-party package.
+
+not_found:
+- '@clarify/cms-datagov-mcp-server on npm — 404'
+- clarify-logger on npm — 404
+- clarify-amqp on npm — 404
+- clarify-loopback-jwt on npm — 404
+- clarify-loopback-connector on npm — 404
+- clarifyhealth on PyPI — 404
+- clarify-health on PyPI — 404
+- spark_feature_selector / spark-feature-selector on PyPI — 404
+- secretsmanager_envshim on PyPI — 404
+- python_enable_tab_complete on PyPI — 404
+
+false_positives_rejected:
+- '@clarify-labs/cli, @clarify-labs/renderer, @clarify-labs/templates on npm — the
+  "@clarify-labs" scope belongs to Clarify Labs, an unrelated company.'
+- 'npm "clarify" — a Node.js stack-trace utility, unrelated.'

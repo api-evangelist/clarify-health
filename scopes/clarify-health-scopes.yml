@@ -1,0 +1,91 @@
+generated: '2026-08-15'
+method: probed
+source: >-
+  scopes_supported read verbatim from
+  https://auth.clarifyhealth.com/.well-known/openid-configuration (200) and
+  https://okta.clarifyhealth.com/.well-known/openid-configuration (200), fetched 2026-08-15
+docs: null
+note: >-
+  Clarify Health publishes no scope or permission reference page — there is no developer
+  portal to publish one on. These are the scopes the two live OIDC issuers advertise in
+  their own discovery documents. They are ALL standard OpenID Connect / OAuth 2.0 identity
+  scopes; not one Clarify-specific resource scope is advertised anywhere, which is the
+  finding. A custom Okta authorization server may carry product scopes, but
+  /oauth2/default/.well-known/openid-configuration returns 401 (E0000015) so they are not
+  anonymously discoverable.
+issuers:
+- issuer: https://auth.clarifyhealth.com/
+  platform: Auth0
+  scope_count: 14
+  scopes:
+  - name: openid
+    description: Request an ID token (OpenID Connect core).
+    standard: true
+  - name: profile
+    description: Basic profile claims for the authenticated user.
+    standard: true
+  - name: offline_access
+    description: Issue a refresh token.
+    standard: true
+  - name: name
+    description: Full name claim.
+    standard: true
+  - name: given_name
+    description: Given name claim.
+    standard: true
+  - name: family_name
+    description: Family name claim.
+    standard: true
+  - name: nickname
+    description: Nickname claim.
+    standard: true
+  - name: email
+    description: Email address claim.
+    standard: true
+  - name: email_verified
+    description: Email verification status claim.
+    standard: true
+  - name: picture
+    description: Profile picture claim.
+    standard: true
+  - name: created_at
+    description: Account creation timestamp claim (Auth0 extension).
+    standard: false
+  - name: identities
+    description: Linked identity provider records (Auth0 extension).
+    standard: false
+  - name: phone
+    description: Phone number claim.
+    standard: true
+  - name: address
+    description: Address claim.
+    standard: true
+- issuer: https://okta.clarifyhealth.com
+  platform: Okta
+  scope_count: 7
+  scopes:
+  - name: openid
+    description: Request an ID token (OpenID Connect core).
+    standard: true
+  - name: email
+    description: Email address claim.
+    standard: true
+  - name: profile
+    description: Basic profile claims.
+    standard: true
+  - name: address
+    description: Address claim.
+    standard: true
+  - name: phone
+    description: Phone number claim.
+    standard: true
+  - name: offline_access
+    description: Issue a refresh token.
+    standard: true
+  - name: groups
+    description: Group memberships of the authenticated user (Okta org server).
+    standard: false
+summary:
+  total_scopes: 21
+  resource_scopes: 0
+  identity_scopes: 21

@@ -1,0 +1,173 @@
+generated: '2026-08-15'
+method: probed
+source: >-
+  Derived from the two OIDC discovery documents in well-known/ (both HTTP 200,
+  2026-08-15), the Statuspage v2 API, and the public pages at clarifyhealth.com. There is
+  no OpenAPI, no vocabulary and no tag set in this repo to derive from.
+scope: >-
+  Clarify Health has no published API contract, so every REST/API-shaped standard below is
+  recorded as not conformant on the honest grounds that there is nothing to conform. The
+  standards it DOES meet are all identity-layer standards, met by its Auth0 and Okta
+  deployments, plus one healthcare regulatory program it participates in.
+
+standards:
+- id: oidc
+  name: OpenID Connect Core 1.0 + Discovery 1.0
+  conforms: true
+  evidence: >-
+    https://auth.clarifyhealth.com/.well-known/openid-configuration and
+    https://okta.clarifyhealth.com/.well-known/openid-configuration both return HTTP 200
+    with a valid discovery document (issuer, authorization_endpoint, token_endpoint,
+    jwks_uri, userinfo_endpoint, response_types_supported, subject_types_supported,
+    id_token_signing_alg_values_supported).
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: Both issuers publish authorization, token and revocation endpoints and a
+    grant_types_supported list.
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 200 on BOTH auth.clarifyhealth.com and
+    okta.clarifyhealth.com, saved verbatim in well-known/.
+- id: rfc7636
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: >-
+    code_challenge_methods_supported = [S256, plain] on the Auth0 issuer; [S256] on the
+    Okta issuer. Note the Auth0 tenant still advertises the weaker "plain" method.
+- id: rfc9449
+  name: OAuth 2.0 Demonstrating Proof of Possession (DPoP, RFC 9449)
+  conforms: true
+  evidence: >-
+    dpop_signing_alg_values_supported = [ES256] on Auth0;
+    [RS256,RS384,RS512,ES256,ES384,ES512] on Okta.
+- id: rfc9126
+  name: Pushed Authorization Requests (PAR, RFC 9126)
+  conforms: partial
+  evidence: >-
+    Okta issuer advertises pushed_authorization_request_endpoint. The Auth0 issuer does
+    not.
+- id: rfc8628
+  name: OAuth 2.0 Device Authorization Grant (RFC 8628)
+  conforms: true
+  evidence: device_authorization_endpoint present on both issuers.
+- id: rfc7591
+  name: Dynamic Client Registration (RFC 7591)
+  conforms: true
+  evidence: >-
+    registration_endpoint present on both issuers (https://auth.clarifyhealth.com/oidc/register
+    and https://okta.clarifyhealth.com/oauth2/v1/clients).
+- id: rfc7662
+  name: OAuth 2.0 Token Introspection (RFC 7662)
+  conforms: partial
+  evidence: introspection_endpoint present on the Okta issuer only.
+- id: ciba
+  name: OpenID Connect CIBA (backchannel authentication)
+  conforms: true
+  evidence: backchannel_authentication_endpoint / backchannel_token_delivery_modes_supported
+    on both issuers.
+- id: rfc9116
+  name: security.txt (RFC 9116)
+  conforms: false
+  evidence: >-
+    404 on clarifyhealth.com, auth.clarifyhealth.com and okta.clarifyhealth.com. The 200 at
+    status.clarifyhealth.com/.well-known/security.txt is ATLASSIAN's document
+    (Canonical: https://www.atlassian.com/.well-known/security.txt), served by the hosted
+    Statuspage platform, and is not credited to Clarify Health.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    /openapi.json, /swagger.json, /api-docs, /docs and /v1/openapi.json all 404 on
+    clarifyhealth.com; no API subdomain exists (api., docs., developer., developers. and
+    portal.clarifyhealth.com are all NXDOMAIN); no OpenAPI file in the 37 public repos of
+    github.com/clarifyhealth.
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: No event, streaming or webhook surface is documented anywhere on the public site.
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence: No /graphql surface found on any resolvable Clarify Health host.
+- id: fhir
+  name: HL7 FHIR
+  conforms: false
+  evidence: >-
+    Zero occurrences of "FHIR" across clarifyhealth.com/, /about, /meridian, /who-we-help,
+    /resources, /terms-of-use, /privacy-policy, /acceptable-use-policy, /contact-clarify,
+    /careers and /qe-public-reports. Notable for a company whose product is built on
+    longitudinal claims data.
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: No API, therefore no error envelope to assess.
+- id: idempotency
+  name: HTTP idempotency keys
+  conforms: false
+  evidence: No API, no documented idempotency behaviour.
+- id: scim
+  name: SCIM 2.0
+  conforms: false
+  evidence: >-
+    Not advertised. The Okta org would make SCIM provisioning plausible, but nothing is
+    published, so this is recorded as absent rather than assumed.
+- id: mcp
+  name: Model Context Protocol
+  conforms: partial
+  evidence: >-
+    github.com/clarifyhealth/cms-datagov-mcp-server implements MCP against
+    @modelcontextprotocol/sdk ^0.6.0 (stdio transport, 5 tools, 3 resource templates) —
+    but it exposes the U.S. CMS data.cms.gov Data API, not Clarify's own platform. See
+    mcp/clarify-health-mcp.yml.
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on every resolvable
+    Clarify Health host.
+
+regulatory_and_compliance:
+- id: cms-qualified-entity
+  name: CMS Qualified Entity (QE) Program
+  conforms: true
+  evidence: >-
+    Clarify Health publishes annual QE Public Reports for 2020 through 2025 at
+    https://clarifyhealth.com/qe-public-reports (HTTP 200, fetched 2026-08-15). QE status
+    is granted by the Centers for Medicare & Medicaid Services and requires public
+    reporting of quality measures across Medicare, Medicaid and commercially insured
+    populations.
+- id: hipaa
+  name: HIPAA
+  conforms: claimed
+  evidence: >-
+    HIPAA obligations are referenced in the Terms of Use
+    (https://clarifyhealth.com/terms-of-use, 200) and the Privacy Policy
+    (https://clarifyhealth.com/privacy-policy, 200, 6 references). This is a contractual
+    statement, not a certification.
+- id: hitrust
+  name: HITRUST Risk-Based (r2) Certification
+  conforms: unverified
+  evidence: >-
+    Clarify Health announced HITRUST r2 certification for the Clarify Atlas Platform in
+    2024, but the announcement URL
+    (https://clarifyhealth.com/insights/news/clarify-health-achieves-hitrust-risk-based-certification/)
+    now 302s to https://clarifyhealth.com/resources on the rebuilt Squarespace site, and no
+    live page on clarifyhealth.com mentions HITRUST. Recorded as UNVERIFIED because no
+    currently-served provider URL asserts it.
+- id: soc2
+  name: SOC 2
+  conforms: unknown
+  evidence: >-
+    No SOC 2 claim found on any live clarifyhealth.com page and no trust center exists
+    (trust.clarifyhealth.com is NXDOMAIN; probe-security-programs.py returned
+    trust=none).
+
+summary:
+  conformant: 9
+  partial: 3
+  not_conformant: 9
+  unverified_or_unknown: 2
+  published_certifications_verifiable_today: 1   # CMS Qualified Entity

@@ -1,0 +1,29 @@
+generated: '2026-08-15'
+method: searched
+source: >-
+  Full sweep of the public clarifyhealth.com surface (sitemap.xml, 79 URLs) plus the
+  identity hosts auth.clarifyhealth.com and okta.clarifyhealth.com, 2026-08-15
+limit_count: 0
+limits: []
+headers: []
+status_code_on_exhaustion: null
+note: >-
+  No rate limits are documented because no API is documented. Clarify Health publishes no
+  developer portal, no API reference, and no machine-readable contract, so there is nothing
+  to rate-limit and no runtime signal for an agent to read. The only anonymously reachable
+  Clarify-controlled endpoints are the two OIDC discovery documents and the hosted
+  Atlassian Statuspage; neither returned any X-RateLimit-*, RateLimit-* or Retry-After
+  header on the responses observed.
+observed:
+- url: https://auth.clarifyhealth.com/.well-known/openid-configuration
+  status: 200
+  rate_limit_headers: none observed
+- url: https://okta.clarifyhealth.com/.well-known/openid-configuration
+  status: 200
+  rate_limit_headers: none observed
+- url: https://status.clarifyhealth.com/api/v2/summary.json
+  status: 200
+  rate_limit_headers: none observed
+  note: >-
+    Hosted Atlassian Statuspage. Any limits applied here are Atlassian's platform limits,
+    not a Clarify Health API policy.
