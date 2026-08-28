@@ -8,6 +8,17 @@ description: 'Clarify Health Solutions is a healthcare analytics and outcomes co
   2026, acquired Loyal Health to expand its consumer engagement capabilities. The company operates a
   SaaS analytics product rather than a public developer API; this profile tracks its identity and public
   web surface within the API Evangelist network.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
