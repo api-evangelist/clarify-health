@@ -15,3 +15,30 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: clarify-health-aws-data-exchange
+  label: AWS Data Exchange
+  partner: amazon-data-exchange
+  partner_name: AWS Data Exchange
+  category: data product listing
+  type: marketplace
+  marketplace: amazon-data-exchange-marketplace
+  channel: distribution
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=1ee23a28-3c42-4064-afec-f7793b1ab434
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Clarify Health Solutions, Inc.
+    matched_domain: clarifyhealth.com
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - Clarify Navigate - Provider Performance Scores
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
